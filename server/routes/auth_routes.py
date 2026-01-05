@@ -95,8 +95,8 @@ def login():
             }), status_code
         
         # Generiši JWT tokene
-        access_token = create_access_token(identity=user.id)
-        refresh_token = create_refresh_token(identity=user.id)
+        access_token = create_access_token(identity=str(user.id))
+        refresh_token = create_refresh_token(identity=str(user.id))
         
         # Response
         login_response = LoginResponseDTO(access_token, refresh_token, user)
@@ -146,7 +146,7 @@ def get_current_user():
     Header: Authorization: Bearer <access_token>
     """
     try:
-        current_user_id = get_jwt_identity()
+        current_user_id = int(get_jwt_identity())
         user = UserService.get_user_by_id(current_user_id)
         
         if not user:
