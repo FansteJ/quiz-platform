@@ -1,19 +1,14 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+from flask_jwt_extended import JWTManager
 from models import db
-from models.user import User
 from config import Config
-
-# Import Blueprint-a
 from routes.auth_routes import auth_bp
 
-# Kreiramo Flask aplikaciju
 app = Flask(__name__)
-
-# Učitavamo konfiguraciju
 app.config.from_object(Config)
 
-# Omogući CORS za komunikaciju sa React-om
+# CORS
 CORS(app, resources={
     r"/api/*": {
         "origins": ["http://localhost:3000", "http://localhost:5173"],
@@ -22,13 +17,16 @@ CORS(app, resources={
     }
 })
 
-# Inicijalizujemo bazu podataka
+# JWT
+jwt = JWTManager(app)
+
+# Database
 db.init_app(app)
 
-# Registrujemo Blueprint-ove
+# Blueprints
 app.register_blueprint(auth_bp)
 
-# Kreiramo tabele u bazi
+# Kreiraj tabele
 with app.app_context():
     db.create_all()
     print("✅ Database created!")
@@ -37,8 +35,7 @@ with app.app_context():
 def hello():
     return jsonify({
         'message': 'Quiz Platform API is running!',
-        'status': 'success',
-        'database': 'connected'
+        'status': 'success'
     })
 
 @app.route('/health')
