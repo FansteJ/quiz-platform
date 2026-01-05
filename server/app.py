@@ -56,16 +56,16 @@ def test_user():
         # Kreiraj test korisnika
         from datetime import date
         test_user = User(
-            ime='Marko',
-            prezime='Marković',
+            name='Marko',
+            surname='Marković',
             email='test@example.com',
             password_hash='hash123',  # Later ćemo dodati pravo hešovanje
-            datum_rodjenja=date(1995, 5, 15),
-            pol='M',
-            drzava='Srbija',
-            ulica='Kralja Petra',
-            broj='10',
-            uloga='IGRAC'
+            date_of_birth=date(1995, 5, 15),
+            gender='M',
+            country='Srbija',
+            street='Kralja Petra',
+            number='10',
+            role='PLAYER'
         )
         
         # Dodaj u bazu
