@@ -1,14 +1,18 @@
 import os
+from datetime import timedelta
 
 class Config:
-    # DATABASE_URL dolazi iz docker-compose.yml
+    # Database
     SQLALCHEMY_DATABASE_URI = os.getenv(
         'DATABASE_URL',
         'postgresql://quiz_user:quiz_pass@localhost:5432/quiz_users_db'
     )
-    
-    # Isključi tracking modifikacija (performanse)
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
-    # Secret key za JWT (kasnije)
+    # JWT
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'dev-jwt-secret-change-in-production')
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)  # Token važi 1 sat
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=30)  # Refresh token važi 30 dana
+    
+    # Secret key za sesije
     SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key-change-in-production')
