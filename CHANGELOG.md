@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/FansteJ/quiz-platform/compare/v1.4.0...v1.5.0) (2026-01-09)
+
+
+### Features
+
+* add app.py for quiz service ([9c77a85](https://github.com/FansteJ/quiz-platform/commit/9c77a85f1d168a0b492e26c30ea1801ad7e06b67))
+* add database.py (MongoDB connection) ([966a7f9](https://github.com/FansteJ/quiz-platform/commit/966a7f96818e21534ec86649c229868d13a38ed2))
+* add model quiz.py ([6c796f5](https://github.com/FansteJ/quiz-platform/commit/6c796f5d3049f4738c7854250fd3b54c664119e5))
+* add quiz_dto.py ([38b095d](https://github.com/FansteJ/quiz-platform/commit/38b095daa275176c242abaecb669fc46c5a61f81))
+* add quiz_routes.py ([5b47322](https://github.com/FansteJ/quiz-platform/commit/5b47322527353e62c3c775e066440529485941c7))
+
 ## [1.4.0](https://github.com/FansteJ/quiz-platform/compare/v1.3.0...v1.4.0) (2026-01-09)
 
 
