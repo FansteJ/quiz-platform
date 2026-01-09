@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # PostgreSQL baza
+  # PostgreSQL - Baza podataka za korisnike
   postgres:
     image: postgres:15-alpine
     container_name: quiz_postgres
@@ -21,7 +21,26 @@ services:
       timeout: 5s
       retries: 5
 
-  # Flask server
+  # MongoDB - Baza podataka za kvizove
+  mongodb:
+    image: mongo:7
+    container_name: quiz_mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: quiz_user
+      MONGO_INITDB_ROOT_PASSWORD: quiz_pass
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - quiz_network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Server - Glavni Flask servis
   server:
     build:
       context: ./server
@@ -30,6 +49,8 @@ services:
     environment:
       - FLASK_ENV=development
       - DATABASE_URL=postgresql://quiz_user:quiz_pass@postgres:5432/quiz_users_db
+      - JWT_SECRET_KEY=your-secret-key-change-in-production
+      - QUIZ_SERVICE_URL=http://quiz-service:5001
     ports:
       - "5000:5000"
     volumes:
@@ -40,8 +61,30 @@ services:
     networks:
       - quiz_network
 
+  # Kviz servis - Mikroservis za kvizove
+  quiz-service:
+    build:
+      context: ./quiz-service
+      dockerfile: Dockerfile
+    container_name: quiz_service
+    environment:
+      - FLASK_ENV=development
+      - MONGODB_URL=mongodb://quiz_user:quiz_pass@mongodb:27017/
+      - MONGODB_DB=quiz_db
+      - SERVER_URL=http://server:5000
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./quiz-service:/app
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - quiz_network
+
 volumes:
   postgres_data:
+  mongodb_data:
 
 networks:
   quiz_network:
