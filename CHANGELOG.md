@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/FansteJ/quiz-platform/compare/v1.3.0...v1.4.0) (2026-01-09)
+
+
+### Features
+
+* add api.js ([3a68d9e](https://github.com/FansteJ/quiz-platform/commit/3a68d9e1ea9db59c8a67e4d339f74baec2c766b4))
+* add authService.js ([6610ba7](https://github.com/FansteJ/quiz-platform/commit/6610ba7f51ced54375f0b525921c386764b7f27c))
+* add authStore.js ([b2def7e](https://github.com/FansteJ/quiz-platform/commit/b2def7e5bcf1c5efc6e8ab609c3d650979220c45))
+* add Dashboard.jsx ([a0a1306](https://github.com/FansteJ/quiz-platform/commit/a0a1306aa4f3aa81de4440e2c2dc78ac8f0df8df))
+* add LoginForm.jsx (login component) ([719bcc7](https://github.com/FansteJ/quiz-platform/commit/719bcc7577144800225706e0411cb7d36cddcd2f))
+* add RegisterForm.jsx (register component) ([ab96f41](https://github.com/FansteJ/quiz-platform/commit/ab96f4114fcd9278d4296e2526d923fa5f839e54))
+* modify App.jsx to contain new components ([1a4ffe3](https://github.com/FansteJ/quiz-platform/commit/1a4ffe3c402bd6473e0bb529cf79d597a8e99a18))
+
+
+### Bug Fixes
+
+* modify version of tailwind ([aab27b8](https://github.com/FansteJ/quiz-platform/commit/aab27b8e62807f383e01c8a0191cd22b75246f41))
+
 ## [1.3.0](https://github.com/FansteJ/quiz-platform/compare/v1.2.0...v1.3.0) (2026-01-05)
 
 
